@@ -56,15 +56,10 @@ class Product
     @price = toDiscount(price)
   end  
 
-  def printLabel()
-
+  def process()
     label.printLabel("This is a Physical Item, Fragile Product!")      
   end  
-
-  def sedEmail()
-
-   end
-
+  
   def toDiscount(valeu)
 
       @price = valeu.to_f
@@ -82,12 +77,9 @@ class Book < Product
       @label = Label.new     
     end 
 
-    def printLabel() 
+    def process() 
      label.printLabel("This product is a book and according to the Constitution Art. 150, VI, it is exempt from taxes.")         
-    end  
-
-    def sedEmail()    
-    end
+    end     
 
     def toDiscount(valeu)
        @price = valeu.to_f
@@ -104,7 +96,7 @@ class Digital < Product
         @email = email       
     end
 
-  def printLabel()         
+  def process()         
   end 
 
   def toDiscount(valeu)
@@ -136,10 +128,7 @@ class Membership < Product
       @email = email      
   end
 
-  def printLabel()         
-  end  
-
-  def sedEmail()
+  def process()
     email.sedEmail(description)    
   end
 
@@ -218,8 +207,7 @@ class Payment
     @paid_at = Time.now
 
     for item in order.orderItem
-      item.product.printLabel()
-      item.product.sedEmail()
+      item.product.process()     
     end
 
     puts "O Total da sua Compra é: R$#{order.amount}"    
